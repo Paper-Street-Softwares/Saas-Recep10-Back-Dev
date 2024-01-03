@@ -11,6 +11,9 @@
   "jest": {
     "preset": "ts-jest"
   },
+  "prisma": {
+    "schema": "./src/database/prisma/schema.prisma"
+  },
   "keywords": [],
   "author": "Edison Matos",
   "license": "MIT",
