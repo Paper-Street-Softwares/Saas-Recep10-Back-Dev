@@ -1,4 +1,3 @@
-import prisma from "../database/prisma/prismaClient";
 import { createUser } from "../repositories/user-repository";
 
 class UserUseCase {
