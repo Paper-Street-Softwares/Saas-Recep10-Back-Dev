@@ -1,9 +1,19 @@
-import UserUseCase from "../useCases/user-userCase";
-
-const userUserCase = new UserUseCase();
+import UserUseCase from "../useCases/user-useCase";
 
 class UserController {
-  async findAll(request: any, response: any) {}
+  private userUseCase: UserUseCase;
+
+  constructor() {
+    this.userUseCase = new UserUseCase();
+  }
+
+  findAllMethod = async (req: any, res: any) => {
+    await this.userUseCase.findAll(req, res);
+  };
+
+  createMethod = async (req: any, res: any) => {
+    await this.userUseCase.create(req, res);
+  };
 }
 
 export default UserController;

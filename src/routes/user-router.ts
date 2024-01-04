@@ -5,6 +5,7 @@ const userRouter = Router();
 
 const userController = new UserController();
 
-userRouter.get("/api/users", userController.findAll);
+userRouter.get("/api/users", userController.findAllMethod);
+userRouter.post("/api/users", userController.createMethod);
 
 export default userRouter;
