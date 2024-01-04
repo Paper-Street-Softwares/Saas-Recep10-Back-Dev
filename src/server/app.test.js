@@ -1,5 +1,5 @@
-import app from "./app";
-import request from "supertest";
+const app = require("./app");
+const request = require("supertest");
 
 describe("Tests the server (app)", () => {
   test("Return an json object and statusCode 200 when hit '/' route.", async () => {
