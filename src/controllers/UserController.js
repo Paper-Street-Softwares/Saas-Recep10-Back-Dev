@@ -7,25 +7,26 @@ class UserController {
 
   constructor() {}
 
-  async criar(request, response) {
-    const { name, email, password } = request.body;
+  async criar(name, email, password) {
+    // async criar(request, response) {
+    // const { name, email, password } = request.body;
 
-    const createdUser = await prisma.user.create({
-      data: {
-        name,
-        email,
-        password,
-      },
-    });
+    // const createdUser = await prisma.user.create({
+    //   data: {
+    //     name,
+    //     email,
+    //     password,
+    //   },
+    // });
 
-    // await this.userUseCase.userRepository.createUser(name, email, password);
+    await this.userUseCase.userRepository.createUser(name, email, password);
 
-    return response.status(200).json({ status: "created." });
+    // return response.status(200).json({ status: "created." });
   }
 }
 
-// const teste = new UserController();
+const teste = new UserController();
 
-// teste.criar("ab", "ju", "ja");
+teste.criar("ab", "ju", "ja");
 
 module.exports = UserController;
