@@ -1,13 +1,16 @@
 const prisma = require("../database/prisma/prismaClient");
-const User = require("../entities/User-entity");
 
 class UserRepository {
-  async createUser(userData) {
+  async createUser(name, email, password) {
     const createdUser = await prisma.user.create({
-      data: userData,
+      data: {
+        name,
+        email,
+        password,
+      },
     });
 
-    return new User(createdUser);
+    return createdUser;
   }
 }
 
