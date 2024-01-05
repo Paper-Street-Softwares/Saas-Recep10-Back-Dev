@@ -4,10 +4,11 @@ class UserUseCase {
   userRepository = new UserRepository();
 
   constructor() {
-    this.userRepository.createUse();
+    this.userRepository.acaoRepository1();
   }
 
-  testMethodUseCase() {}
+  acaoUseCase1() {}
+  acaoUseCase2() {}
 }
 
 module.exports = UserUseCase;
