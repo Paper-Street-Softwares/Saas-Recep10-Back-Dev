@@ -1,14 +1,15 @@
 const UserRepository = require("../repositories/User-repository");
+const User = require("../entities/User-entity");
 
 class UserUseCase {
-  userRepository = new UserRepository();
-
   constructor() {
-    this.userRepository.acaoRepository1();
+    this.userRepository = new UserRepository();
   }
 
-  acaoUseCase1() {}
-  acaoUseCase2() {}
+  async createUser(userData) {
+    const createdUser = await this.userRepository.createUser(userData);
+    return createdUser;
+  }
 }
 
 module.exports = UserUseCase;

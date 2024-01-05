@@ -1,14 +1,22 @@
+const express = require("express");
 const UserUseCase = require("../useCases/User-useCase");
+const User = require("../entities/User-entity");
 
 class UserController {
-  userUseCase = new UserUseCase();
-
-  constructor() {}
-
-  async acaoController1(req, res) {
-    return res.status(200).json({ test: "test" });
+  constructor() {
+    this.userUseCase = new UserUseCase();
   }
-  async acaoController2() {}
+
+  async createdUser(req, res) {
+    try {
+      const userData = req.body;
+      const newUser = await this.userUseCase.createUser(userData);
+      res.status(201).json(newUser);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: error.message });
+    }
+  }
 }
 
 module.exports = UserController;
