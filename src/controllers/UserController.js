@@ -7,9 +7,9 @@ class UserController {
   async criar(req, res) {
     const { name, email, password } = req.body;
 
-    new UserRepository().createUser(name, email, password);
+    new UserUseCase().createUserUseCase(name, email, password, res);
 
-    return res.status(200).json({ status: "created." });
+    // return res.status(200).json({ status: "created." });
   }
 }
 module.exports = UserController;
