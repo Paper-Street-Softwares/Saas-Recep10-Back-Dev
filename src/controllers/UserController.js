@@ -1,32 +1,15 @@
 const { request, response } = require("express");
-const UserUseCase = require("../useCases/UserUseCase");
-const prisma = require("../database/prisma/prismaClient");
+const UserUseCase = require("../useCases/UserUseCase.js");
+const UserRepository = require("../repositories/UserRepository.js");
+const prisma = require("../database/prisma/prismaClient.js");
 
 class UserController {
-  userUseCase = new UserUseCase();
+  async criar(req, res) {
+    const { name, email, password } = req.body;
 
-  constructor() {}
+    new UserUseCase().createUserUseCase(name, email, password);
 
-  async criar(name, email, password) {
-    // async criar(request, response) {
-    // const { name, email, password } = request.body;
-
-    // const createdUser = await prisma.user.create({
-    //   data: {
-    //     name,
-    //     email,
-    //     password,
-    //   },
-    // });
-
-    await this.userUseCase.userRepository.createUser(name, email, password);
-
-    // return response.status(200).json({ status: "created." });
+    return res.status(200).json({ status: "created." });
   }
 }
-
-const teste = new UserController();
-
-teste.criar("ab", "ju", "ja");
-
 module.exports = UserController;

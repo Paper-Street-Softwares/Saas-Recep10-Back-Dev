@@ -1,7 +1,9 @@
 const UserRepository = require("../repositories/UserRepository");
 
 class UserUseCase {
-  userRepository = new UserRepository();
+  async createUserUseCase(name, email, password) {
+    new UserRepository(name, email, password);
+  }
 }
 
 module.exports = UserUseCase;
