@@ -8,6 +8,10 @@ class UserRepository {
         email,
         password,
       },
+      select: {
+        name: true,
+        email: true,
+      },
     });
 
     return createdUser;
