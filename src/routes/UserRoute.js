@@ -5,6 +5,7 @@ const userRouter = Router();
 
 const userController = new UserController();
 
-userRouter.post("/api/v2/users", userController.criar);
+userRouter.post("/api/v2/users", userController.handleCreateUser);
+userRouter.get("/api/v2/users", userController.handlefindAllUsers);
 
 module.exports = userRouter;

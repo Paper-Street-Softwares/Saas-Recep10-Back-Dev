@@ -1,14 +1,14 @@
 const UserRepository = require("../repositories/UserRepository");
 
 class UserUseCase {
-  async createUserUseCase(name, email, password, res) {
-    // if (!name) {
-    //   res.status(400).json({ message: "Name not found." });
-    //   return;
-    // }
-
+  async executeCreateUser(name, email, password, res) {
     if (!name) {
       name = "Não informado";
+    }
+
+    if (!email) {
+      res.status(400).json({ message: "Email must be provided." });
+      return;
     }
 
     const findUserByEmail = await new UserRepository().findUserByEmail(email);
@@ -18,12 +18,12 @@ class UserUseCase {
       return;
     }
 
-    const newUser = await new UserRepository().createUser(
+    const createNewUser = await new UserRepository().createUser(
       name,
       email,
       password
     );
-    return newUser;
+    return createNewUser;
   }
 }
 
