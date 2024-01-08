@@ -14,7 +14,7 @@ class UserController {
       );
 
       if (createdUser) {
-        return res.status(200).json({ user: createdUser });
+        return res.status(201).json({ user: createdUser });
       }
     } catch (error) {
       console.error(error);

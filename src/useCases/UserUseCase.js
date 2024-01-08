@@ -2,9 +2,13 @@ const UserRepository = require("../repositories/UserRepository");
 
 class UserUseCase {
   async createUserUseCase(name, email, password, res) {
+    // if (!name) {
+    //   res.status(400).json({ message: "Name not found." });
+    //   return;
+    // }
+
     if (!name) {
-      res.status(400).json({ message: "Name not found." });
-      return;
+      name = "Não informado";
     }
 
     const findUserByEmail = await new UserRepository().findUserByEmail(email);
