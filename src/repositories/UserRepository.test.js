@@ -12,12 +12,16 @@ beforeAll(async () => {
   mainTestUser = createTestUser;
 });
 
-afterAll(async () => {});
+afterAll(async () => {
+  const deletedTestUser = await new UserRepository().deleteUserByName(
+    "AnyName"
+  );
+});
 
 describe("UserRepository.createUser", () => {
   test("Should create a new User ", () => {
     const testUserPayload = {
-      name: "AynName",
+      name: "AnyName",
       email: "any@any.com",
       password: "anyPassword",
     };
