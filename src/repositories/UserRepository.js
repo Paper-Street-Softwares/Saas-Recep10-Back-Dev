@@ -9,6 +9,7 @@ class UserRepository {
         password,
       },
       select: {
+        id: true,
         name: true,
         email: true,
       },
@@ -36,6 +37,31 @@ class UserRepository {
     });
 
     return usersList;
+  }
+
+  async deleteUserById(id) {
+    const deletedUser = await prisma.user.delete({
+      where: {
+        id,
+      },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+      },
+    });
+
+    return deletedUser;
+  }
+
+  async deleteUserByName(name) {
+    const deletedUser = await prisma.user.deleteMany({
+      where: {
+        name,
+      },
+    });
+
+    return deletedUser;
   }
 }
 
