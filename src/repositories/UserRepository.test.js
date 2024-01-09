@@ -42,3 +42,15 @@ describe("UserRepository.createUser", () => {
     expect(testUserInstance.password).toBeUndefined();
   });
 });
+
+describe("UserRepository.deleteById", () => {
+  test("Should delete the user by id and return id, name, password", () => {
+    const testUserInstance = mainTestUser;
+
+    const deletedTestUser = new UserRepository().deleteUserById(
+      mainTestUser.id
+    );
+
+    expect(deletedTestUser).toBeDefined();
+  });
+});
