@@ -18,6 +18,16 @@ class UserRepository {
     return userCreated;
   }
 
+  async findUserById(id) {
+    const userFoundById = await prisma.user.findFirst({
+      where: {
+        id,
+      },
+    });
+
+    return userFoundById;
+  }
+
   async findUserByEmail(email) {
     const userFoundByEmail = await prisma.user.findFirst({
       where: {

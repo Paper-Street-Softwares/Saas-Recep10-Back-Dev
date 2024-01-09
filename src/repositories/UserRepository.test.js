@@ -2,7 +2,7 @@ const UserRepository = require("../repositories/UserRepository");
 
 let mainTestUser;
 
-beforeAll(async () => {
+beforeEach(async () => {
   const createTestUser = await new UserRepository().createUser(
     "testUser",
     "testMail@mail.com",
@@ -37,7 +37,7 @@ describe("UserRepository.createUser", () => {
     expect(createdTestUser).toBeDefined();
   });
 
-  test("Should return id, name and email, but not id and password", () => {
+  test("Should return id, name and email, but not password", () => {
     const testUserInstance = mainTestUser;
 
     expect(mainTestUser.name).toBeDefined();
@@ -47,14 +47,29 @@ describe("UserRepository.createUser", () => {
   });
 });
 
+describe("UserRepository.find", () => {
+  test("Find an User by id ", () => {
+    const userFoundById = new UserRepository().findUserById(mainTestUser.id);
+
+    expect(userFoundById).toBeDefined();
+  });
+});
+
 describe("UserRepository.deleteById", () => {
   test("Should delete a user based on id", () => {
-    const testUserInstance = mainTestUser;
-
     const deletedTestUser = new UserRepository().deleteUserById(
       mainTestUser.id
     );
 
     expect(deletedTestUser).toBeDefined();
+  });
+
+  test("Should return id, name and email, but no password", () => {
+    const deleteById = new UserRepository().deleteUserById(mainTestUser.id);
+
+    expect(mainTestUser.id).toBeDefined();
+    expect(mainTestUser.name).toBeDefined();
+    expect(mainTestUser.email).toBeDefined();
+    expect(mainTestUser.password).toBeUndefined();
   });
 });
