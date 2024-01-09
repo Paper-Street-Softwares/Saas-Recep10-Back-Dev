@@ -53,6 +53,16 @@ class UserRepository {
 
     return deletedUser;
   }
+
+  async deleteUserByName(name) {
+    const deletedUser = await prisma.user.deleteMany({
+      where: {
+        name,
+      },
+    });
+
+    return deletedUser;
+  }
 }
 
 module.exports = UserRepository;

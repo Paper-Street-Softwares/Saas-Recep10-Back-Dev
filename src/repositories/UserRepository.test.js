@@ -36,15 +36,15 @@ describe("UserRepository.createUser", () => {
   test("Should return id, name and email, but not id and password", () => {
     const testUserInstance = mainTestUser;
 
-    expect(testUserInstance.name).toBeDefined();
-    expect(testUserInstance.email).toBeDefined();
-    expect(testUserInstance.id).toBeDefined();
-    expect(testUserInstance.password).toBeUndefined();
+    expect(mainTestUser.name).toBeDefined();
+    expect(mainTestUser.email).toBeDefined();
+    expect(mainTestUser.id).toBeDefined();
+    expect(mainTestUser.password).toBeUndefined();
   });
 });
 
 describe("UserRepository.deleteById", () => {
-  test("Should delete the user by id and return id, name, password", () => {
+  test("Should delete a user based on id", () => {
     const testUserInstance = mainTestUser;
 
     const deletedTestUser = new UserRepository().deleteUserById(
