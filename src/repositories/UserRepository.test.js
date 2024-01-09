@@ -2,7 +2,7 @@ const UserRepository = require("../repositories/UserRepository");
 
 let mainTestUser;
 
-beforeAll(async () => {
+beforeEach(async () => {
   const createTestUser = await new UserRepository().createUser(
     "testUser",
     "testMail@mail.com",
@@ -37,7 +37,7 @@ describe("UserRepository.createUser", () => {
     expect(createdTestUser).toBeDefined();
   });
 
-  test("Should return id, name and email, but not id and password", () => {
+  test("Should return id, name and email, but not password", () => {
     const testUserInstance = mainTestUser;
 
     expect(mainTestUser.name).toBeDefined();
@@ -56,5 +56,16 @@ describe("UserRepository.deleteById", () => {
     );
 
     expect(deletedTestUser).toBeDefined();
+  });
+
+  test("Should return id, name and email, but no password", () => {
+    const testUserInstance = mainTestUser;
+
+    const deleteById = new UserRepository().deleteUserById(mainTestUser.id);
+
+    expect(mainTestUser.id).toBeDefined();
+    expect(mainTestUser.name).toBeDefined();
+    expect(mainTestUser.email).toBeDefined();
+    expect(mainTestUser.password).toBeUndefined();
   });
 });
