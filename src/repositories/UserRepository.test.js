@@ -47,10 +47,16 @@ describe("UserRepository.createUser", () => {
   });
 });
 
+describe("UserRepository.find", () => {
+  test("Find an User by id ", () => {
+    const userFoundById = new UserRepository().findUserById(mainTestUser.id);
+
+    expect(userFoundById).toBeDefined();
+  });
+});
+
 describe("UserRepository.deleteById", () => {
   test("Should delete a user based on id", () => {
-    const testUserInstance = mainTestUser;
-
     const deletedTestUser = new UserRepository().deleteUserById(
       mainTestUser.id
     );
@@ -59,8 +65,6 @@ describe("UserRepository.deleteById", () => {
   });
 
   test("Should return id, name and email, but no password", () => {
-    const testUserInstance = mainTestUser;
-
     const deleteById = new UserRepository().deleteUserById(mainTestUser.id);
 
     expect(mainTestUser.id).toBeDefined();
