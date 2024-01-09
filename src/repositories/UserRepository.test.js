@@ -12,7 +12,9 @@ beforeAll(async () => {
   mainTestUser = createTestUser;
 });
 
-describe("UserRepository", () => {
+afterAll(async () => {});
+
+describe("UserRepository.createUser", () => {
   test("Should create a new User ", () => {
     const testUserPayload = {
       name: "AynName",
@@ -31,12 +33,12 @@ describe("UserRepository", () => {
     expect(createdTestUser).toBeDefined();
   });
 
-  test("Should return name and email, but not id and password", () => {
+  test("Should return id, name and email, but not id and password", () => {
     const testUserInstance = mainTestUser;
 
     expect(testUserInstance.name).toBeDefined();
     expect(testUserInstance.email).toBeDefined();
-    expect(testUserInstance.id).toBeUndefined();
+    expect(testUserInstance.id).toBeDefined();
     expect(testUserInstance.password).toBeUndefined();
   });
 });

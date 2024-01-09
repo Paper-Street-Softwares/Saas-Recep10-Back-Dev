@@ -9,6 +9,7 @@ class UserRepository {
         password,
       },
       select: {
+        id: true,
         name: true,
         email: true,
       },
@@ -37,6 +38,8 @@ class UserRepository {
 
     return usersList;
   }
+
+  async deleteUserByEmail() {}
 }
 
 module.exports = UserRepository;
