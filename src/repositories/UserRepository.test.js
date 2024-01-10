@@ -13,8 +13,12 @@ beforeEach(async () => {
 });
 
 afterAll(async () => {
-  const deletedTestUser = await new UserRepository().deleteUserByName(
+  const deleteAnyNameTestSubject = await new UserRepository().deleteUserByName(
     "AnyName"
+  );
+
+  const deleteTestUserTestSubject = await new UserRepository().deleteUserByName(
+    "testUser"
   );
 });
 
