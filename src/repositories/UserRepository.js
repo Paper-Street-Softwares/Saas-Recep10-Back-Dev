@@ -23,6 +23,11 @@ class UserRepository {
       where: {
         id,
       },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+      },
     });
 
     return userFoundById;
