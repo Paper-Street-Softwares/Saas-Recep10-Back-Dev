@@ -78,6 +78,17 @@ describe("UserRepository.find", () => {
 
     expect(userFoundByEmail).toBeDefined();
   });
+
+  test("Should return id, name and email, but no password of User found by email ", async () => {
+    const userFoundByEmail = await new UserRepository().findUserByEmail(
+      mainTestUser.email
+    );
+
+    expect(userFoundByEmail.id).toBeDefined();
+    expect(userFoundByEmail.name).toBeDefined();
+    expect(userFoundByEmail.email).toBeDefined();
+    expect(userFoundByEmail.password).toBeUndefined();
+  });
 });
 
 describe("UserRepository.deleteById", () => {
