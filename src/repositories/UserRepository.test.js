@@ -52,7 +52,7 @@ describe("UserRepository.createUser", () => {
 });
 
 describe("UserRepository.find", () => {
-  test("Find an User by id ", async () => {
+  test("Should find an User by id", async () => {
     const userFoundById = await new UserRepository().findUserById(
       mainTestUser.id
     );
@@ -60,7 +60,7 @@ describe("UserRepository.find", () => {
     expect(userFoundById).toBeDefined();
   });
 
-  test("Should return id, name and email, but no password of found User", async () => {
+  test("Should return id, name and email, but no password of User found by id", async () => {
     const userFoundById = await new UserRepository().findUserById(
       mainTestUser.id
     );
@@ -69,6 +69,14 @@ describe("UserRepository.find", () => {
     expect(userFoundById.name).toBeDefined();
     expect(userFoundById.email).toBeDefined();
     expect(userFoundById.password).toBeUndefined();
+  });
+
+  test("Should find an User by email ", async () => {
+    const userFoundByEmail = await new UserRepository().findUserByEmail(
+      mainTestUser.email
+    );
+
+    expect(userFoundByEmail).toBeDefined();
   });
 });
 
