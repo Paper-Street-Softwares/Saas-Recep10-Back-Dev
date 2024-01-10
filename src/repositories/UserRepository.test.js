@@ -13,8 +13,12 @@ beforeEach(async () => {
 });
 
 afterAll(async () => {
-  const deletedTestUser = await new UserRepository().deleteUserByName(
+  const deleteAnyNameTestSubject = await new UserRepository().deleteUserByName(
     "AnyName"
+  );
+
+  const deleteTestUserTestSubject = await new UserRepository().deleteUserByName(
+    "testUser"
   );
 });
 
@@ -48,7 +52,7 @@ describe("UserRepository.createUser", () => {
 });
 
 describe("UserRepository.find", () => {
-  test("Find an User by id ", async () => {
+  test("Should find an User by id", async () => {
     const userFoundById = await new UserRepository().findUserById(
       mainTestUser.id
     );
@@ -56,7 +60,7 @@ describe("UserRepository.find", () => {
     expect(userFoundById).toBeDefined();
   });
 
-  test("Should return id, name and email, but no password of found User", async () => {
+  test("Should return id, name and email, but no password of User found by id", async () => {
     const userFoundById = await new UserRepository().findUserById(
       mainTestUser.id
     );
@@ -65,6 +69,25 @@ describe("UserRepository.find", () => {
     expect(userFoundById.name).toBeDefined();
     expect(userFoundById.email).toBeDefined();
     expect(userFoundById.password).toBeUndefined();
+  });
+
+  test("Should find an User by email ", async () => {
+    const userFoundByEmail = await new UserRepository().findUserByEmail(
+      mainTestUser.email
+    );
+
+    expect(userFoundByEmail).toBeDefined();
+  });
+
+  test("Should return id, name and email, but no password of User found by email ", async () => {
+    const userFoundByEmail = await new UserRepository().findUserByEmail(
+      mainTestUser.email
+    );
+
+    expect(userFoundByEmail.id).toBeDefined();
+    expect(userFoundByEmail.name).toBeDefined();
+    expect(userFoundByEmail.email).toBeDefined();
+    expect(userFoundByEmail.password).toBeUndefined();
   });
 });
 
