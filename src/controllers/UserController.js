@@ -3,6 +3,8 @@ const UserUseCase = require("../useCases/UserUseCase.js");
 const UserRepository = require("../repositories/UserRepository.js");
 
 class UserController {
+  userRepository = new UserRepository();
+
   async handleCreateUser(req, res) {
     const { name, email, password } = req.body;
 
@@ -25,7 +27,7 @@ class UserController {
 
   async handlefindAllUsers(req, res) {
     try {
-      const listAll = await new UserRepository().findAllUser();
+      const listAll = await new this.userRepository.findAllUser();
 
       if (listAll) {
         return res.status(200).json(listAll);

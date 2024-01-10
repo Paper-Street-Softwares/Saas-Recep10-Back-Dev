@@ -1,6 +1,8 @@
 const UserRepository = require("../repositories/UserRepository");
 
 class UserUseCase {
+  userRepository = new UserRepository();
+
   async executeCreateUser(name, email, password, res) {
     if (!name) {
       name = "Não informado";
@@ -11,14 +13,14 @@ class UserUseCase {
       return;
     }
 
-    const findUserByEmail = await new UserRepository().findUserByEmail(email);
+    const findUserByEmail = await this.userRepository.findUserByEmail(email);
 
     if (findUserByEmail) {
       res.status(400).json({ message: "Email is already in use." });
       return;
     }
 
-    const createNewUser = await new UserRepository().createUser(
+    const createNewUser = await this.userRepository.createUser(
       name,
       email,
       password
