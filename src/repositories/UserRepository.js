@@ -1,7 +1,7 @@
 const prisma = require("../database/prisma/prismaClient");
 
 class UserRepository {
-  async createUser(name, email, password) {
+  createUser = async (name, email, password) => {
     const userCreated = await prisma.user.create({
       data: {
         name,
@@ -16,9 +16,9 @@ class UserRepository {
     });
 
     return userCreated;
-  }
+  };
 
-  async findUserById(id) {
+  findUserById = async (id) => {
     const userFoundById = await prisma.user.findFirst({
       where: {
         id,
@@ -31,9 +31,9 @@ class UserRepository {
     });
 
     return userFoundById;
-  }
+  };
 
-  async findUserByEmail(email) {
+  findUserByEmail = async (email) => {
     const userFoundByEmail = await prisma.user.findFirst({
       where: {
         email,
@@ -46,9 +46,9 @@ class UserRepository {
     });
 
     return userFoundByEmail;
-  }
+  };
 
-  async findAllUser() {
+  findAllUser = async () => {
     const usersList = await prisma.user.findMany({
       select: {
         name: true,
@@ -57,9 +57,9 @@ class UserRepository {
     });
 
     return usersList;
-  }
+  };
 
-  async deleteUserById(id) {
+  deleteUserById = async (id) => {
     const deletedUser = await prisma.user.delete({
       where: {
         id,
@@ -72,9 +72,9 @@ class UserRepository {
     });
 
     return deletedUser;
-  }
+  };
 
-  async deleteUserByName(name) {
+  deleteUserByName = async (name) => {
     const deletedUser = await prisma.user.deleteMany({
       where: {
         name,
@@ -82,7 +82,7 @@ class UserRepository {
     });
 
     return deletedUser;
-  }
+  };
 }
 
 module.exports = UserRepository;
