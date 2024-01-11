@@ -4,12 +4,13 @@ const UserRepository = require("../repositories/UserRepository.js");
 
 class UserController {
   userRepository = new UserRepository();
+  userUseCase = new UserUseCase();
 
-  async handleCreateUser(req, res) {
+  handleCreateUser = async (req, res) => {
     const { name, email, password } = req.body;
 
     try {
-      const createdUser = await new UserUseCase().executeCreateUser(
+      const createdUser = await this.userUseCase.executeCreateUser(
         name,
         email,
         password,
@@ -23,11 +24,11 @@ class UserController {
       console.error(error);
       return res.status(500).json({ message: "Erro interno do servidor" });
     }
-  }
+  };
 
-  async handlefindAllUsers(req, res) {
+  handlefindAllUsers = async (req, res) => {
     try {
-      const listAll = await new this.userRepository.findAllUser();
+      const listAll = await this.userRepository.findAllUser();
 
       if (listAll) {
         return res.status(200).json(listAll);
@@ -36,7 +37,7 @@ class UserController {
       console.error(error);
       return res.status(500).json({ message: "Erro interno do servidor" });
     }
-  }
+  };
 }
 
 module.exports = UserController;
