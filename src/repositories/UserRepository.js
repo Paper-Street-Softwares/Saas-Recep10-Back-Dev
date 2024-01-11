@@ -18,7 +18,7 @@ class UserRepository {
     return userCreated;
   };
 
-  async findUserById(id) {
+  findUserById = async (id) => {
     const userFoundById = await prisma.user.findFirst({
       where: {
         id,
@@ -31,7 +31,7 @@ class UserRepository {
     });
 
     return userFoundById;
-  }
+  };
 
   async findUserByEmail(email) {
     const userFoundByEmail = await prisma.user.findFirst({
