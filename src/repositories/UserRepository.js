@@ -1,7 +1,7 @@
 const prisma = require("../database/prisma/prismaClient");
 
 class UserRepository {
-  async createUser(name, email, password) {
+  createUser = async (name, email, password) => {
     const userCreated = await prisma.user.create({
       data: {
         name,
@@ -16,7 +16,7 @@ class UserRepository {
     });
 
     return userCreated;
-  }
+  };
 
   async findUserById(id) {
     const userFoundById = await prisma.user.findFirst({
