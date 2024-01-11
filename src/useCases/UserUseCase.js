@@ -3,7 +3,7 @@ const UserRepository = require("../repositories/UserRepository");
 class UserUseCase {
   userRepository = new UserRepository();
 
-  async executeCreateUser(name, email, password, res) {
+  executeCreateUser = async (name, email, password, res) => {
     if (!name) {
       name = "Não informado";
     }
@@ -26,7 +26,7 @@ class UserUseCase {
       password
     );
     return createNewUser;
-  }
+  };
 }
 
 module.exports = UserUseCase;
