@@ -92,24 +92,39 @@ describe("UserRepository - Find", () => {
 });
 
 describe("UserRepository - Delete", () => {
-  test("Should delete an user based on id", () => {
-    const deletedTestUser = userRepository.deleteUserById(mainTestUser.id);
+  test("Should delete an user based on id", async () => {
+    const deletedTestUser = await userRepository.deleteUserById(
+      mainTestUser.id
+    );
 
     expect(deletedTestUser).toBeDefined();
   });
 
-  test("Should return id, name and email, but no password of deleted User", () => {
-    const deleteById = userRepository.deleteUserById(mainTestUser.id);
+  test("Should return id, name and email, but no password of deleted User", async () => {
+    const deleteById = await userRepository.deleteUserById(mainTestUser.id);
 
-    expect(mainTestUser.id).toBeDefined();
-    expect(mainTestUser.name).toBeDefined();
-    expect(mainTestUser.email).toBeDefined();
-    expect(mainTestUser.password).toBeUndefined();
+    expect(deleteById.id).toBeDefined();
+    expect(deleteById.name).toBeDefined();
+    expect(deleteById.email).toBeDefined();
+    expect(deleteById.password).toBeUndefined();
   });
 
-  test("Should delete an user based on name", () => {
-    const deletedByName = userRepository.deleteUserByName(mainTestUser.name);
+  test("Should delete an user based on name", async () => {
+    const deletedByName = await userRepository.deleteUserByName(
+      mainTestUser.name
+    );
 
     expect(deletedByName).toBeDefined();
+  });
+
+  test("Should return id, name and email, but no password of deleted User", async () => {
+    const deletedByName = await userRepository.deleteUserByName(
+      mainTestUser.name
+    );
+
+    expect(deletedByName.id).toBeDefined();
+    expect(deletedByName.name).toBeDefined();
+    expect(deletedByName.email).toBeDefined();
+    expect(deletedByName.password).toBeUndefined();
   });
 });

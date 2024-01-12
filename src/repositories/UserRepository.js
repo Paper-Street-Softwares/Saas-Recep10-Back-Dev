@@ -75,13 +75,24 @@ class UserRepository {
   };
 
   deleteUserByName = async (name) => {
-    const deletedUser = await prisma.user.deleteMany({
+    const locateByName = await prisma.user.findFirst({
       where: {
         name,
       },
     });
 
-    return deletedUser;
+    const deletedUserByName = await prisma.user.delete({
+      where: {
+        id: locateByName.id,
+      },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+      },
+    });
+
+    return deletedUserByName;
   };
 }
 
