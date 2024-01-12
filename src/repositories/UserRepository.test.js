@@ -83,6 +83,12 @@ describe("UserRepository - Find", () => {
     expect(userFoundByEmail.email).toBeDefined();
     expect(userFoundByEmail.password).toBeUndefined();
   });
+
+  test("Should return all Users", async () => {
+    const listOfAllUsers = await userRepository.findAllUser();
+
+    expect(listOfAllUsers).toBeDefined();
+  });
 });
 
 describe("UserRepository - Delete", () => {
