@@ -92,7 +92,7 @@ describe("UserRepository - Find", () => {
 });
 
 describe("UserRepository - Delete", () => {
-  test("Should delete a user based on id", () => {
+  test("Should delete an user based on id", () => {
     const deletedTestUser = userRepository.deleteUserById(mainTestUser.id);
 
     expect(deletedTestUser).toBeDefined();
@@ -105,5 +105,11 @@ describe("UserRepository - Delete", () => {
     expect(mainTestUser.name).toBeDefined();
     expect(mainTestUser.email).toBeDefined();
     expect(mainTestUser.password).toBeUndefined();
+  });
+
+  test("Should delete an user based on name", () => {
+    const deletedByName = userRepository.deleteUserByName(mainTestUser.name);
+
+    expect(deletedByName).toBeDefined();
   });
 });
