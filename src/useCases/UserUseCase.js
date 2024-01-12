@@ -27,6 +27,12 @@ class UserUseCase {
     );
     return createNewUser;
   };
+
+  executeFindAllUser = async () => {
+    const listOfAllUsers = await this.userRepository.findAllUser();
+
+    return listOfAllUsers;
+  };
 }
 
 module.exports = UserUseCase;

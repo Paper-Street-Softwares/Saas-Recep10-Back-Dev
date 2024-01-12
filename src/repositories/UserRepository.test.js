@@ -19,7 +19,7 @@ afterAll(async () => {
     "AnyName"
   );
 
-  const deleteTestUserTestSubject = await userRepository.deleteUserByName(
+  const deleteTestUserTestSubject = await userRepository.deleteManyByName(
     "testUser"
   );
 });

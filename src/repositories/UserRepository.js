@@ -94,6 +94,14 @@ class UserRepository {
 
     return deletedUserByName;
   };
+
+  deleteManyByName = async (name) => {
+    const manyDeletedByName = await prisma.user.deleteMany({
+      where: {
+        name,
+      },
+    });
+  };
 }
 
 module.exports = UserRepository;

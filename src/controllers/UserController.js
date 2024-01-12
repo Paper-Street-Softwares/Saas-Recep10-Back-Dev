@@ -28,11 +28,8 @@ class UserController {
 
   handlefindAllUsers = async (req, res) => {
     try {
-      const listAll = await this.userRepository.findAllUser();
-
-      if (listAll) {
-        return res.status(200).json(listAll);
-      }
+      const listAll = await this.userUseCase.executeFindAllUser();
+      return res.status(200).json(listAll);
     } catch (error) {
       console.error(error);
       return res.status(500).json({ message: "Erro interno do servidor" });
