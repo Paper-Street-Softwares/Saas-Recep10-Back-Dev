@@ -127,4 +127,32 @@ describe("UserRepository - Delete", () => {
     expect(deletedByName.email).toBeDefined();
     expect(deletedByName.password).toBeUndefined();
   });
+
+  test("Should delete all Users based on name", async () => {
+    const user1 = await userRepository.createUser(
+      "sameName",
+      "email1@email.com",
+      "anyPassword"
+    );
+    const user2 = await userRepository.createUser(
+      "sameName",
+      "email2@email.com",
+      "anyPassword"
+    );
+    const user3 = await userRepository.createUser(
+      "sameName",
+      "email3@email.com",
+      "anyPassword"
+    );
+
+    const deleteAllByName = await userRepository.deleteManyByName("sameName");
+
+    const findUser1 = await userRepository.findUserById(user1.id);
+    const findUser2 = await userRepository.findUserById(user2.id);
+    const findUser3 = await userRepository.findUserById(user3.id);
+
+    expect(findUser1).toBeNull();
+    expect(findUser2).toBeNull();
+    expect(findUser3).toBeNull();
+  });
 });
