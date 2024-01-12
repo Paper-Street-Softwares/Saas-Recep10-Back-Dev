@@ -24,7 +24,7 @@ afterAll(async () => {
   );
 });
 
-describe("UserRepository.createUser", () => {
+describe("UserRepository - Create", () => {
   test("Should create a new User ", () => {
     const testUserPayload = {
       name: "AnyName",
@@ -49,7 +49,7 @@ describe("UserRepository.createUser", () => {
   });
 });
 
-describe("UserRepository.find", () => {
+describe("UserRepository - Find", () => {
   test("Should find an User by id", async () => {
     const userFoundById = await userRepository.findUserById(mainTestUser.id);
 
@@ -85,7 +85,7 @@ describe("UserRepository.find", () => {
   });
 });
 
-describe("UserRepository.deleteById", () => {
+describe("UserRepository - Delete", () => {
   test("Should delete a user based on id", () => {
     const deletedTestUser = userRepository.deleteUserById(mainTestUser.id);
 
