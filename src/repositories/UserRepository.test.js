@@ -91,6 +91,10 @@ describe("UserRepository - Find", () => {
   });
 });
 
+describe("UserRepository - Update", () => {
+  test("Should update info based on id ", () => {});
+});
+
 describe("UserRepository - Delete", () => {
   test("Should delete an user based on id", async () => {
     const deletedTestUser = await userRepository.deleteUserById(

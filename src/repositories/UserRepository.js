@@ -51,12 +51,28 @@ class UserRepository {
   findAllUser = async () => {
     const usersList = await prisma.user.findMany({
       select: {
+        id: true,
         name: true,
         email: true,
       },
     });
 
     return usersList;
+  };
+
+  updateUserById = async (id, name, email, password, res) => {
+    const updatedUser = await prisma.user.update({
+      data: {
+        name,
+        email,
+        password,
+      },
+      where: {
+        id,
+      },
+    });
+
+    return updatedUser;
   };
 
   deleteUserById = async (id) => {

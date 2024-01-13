@@ -33,6 +33,22 @@ class UserUseCase {
 
     return listOfAllUsers;
   };
+
+  executeUpdateUser = async (id, name, email, password, res) => {
+    try {
+      const updatedUser = await this.userRepository.updateUserById(
+        id,
+        name,
+        email,
+        password
+      );
+
+      return updatedUser;
+    } catch (error) {
+      console.log(error.message);
+      return res.status(500).json({ error: "Internal server error." });
+    }
+  };
 }
 
 module.exports = UserUseCase;
