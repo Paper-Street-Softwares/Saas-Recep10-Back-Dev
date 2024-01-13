@@ -92,7 +92,18 @@ describe("UserRepository - Find", () => {
 });
 
 describe("UserRepository - Update", () => {
-  test("Should update info based on id ", () => {});
+  test("Should update info based on id ", async () => {
+    const updatedTestUser = await userRepository.updateUserById(
+      mainTestUser.id,
+      "nameAfterUpdate",
+      "mailAfterUpdate",
+      "passwordAfterUpdate"
+    );
+
+    expect(updatedTestUser).toBeDefined();
+  });
+
+  test.todo("Should deny changing id and other forbiden properties ");
 });
 
 describe("UserRepository - Delete", () => {
