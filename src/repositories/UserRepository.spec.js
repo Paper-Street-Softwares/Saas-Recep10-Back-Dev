@@ -15,13 +15,9 @@ beforeEach(async () => {
 });
 
 afterAll(async () => {
-  const deleteAnyNameTestSubject = await userRepository.deleteUserByName(
-    "AnyName"
-  );
+  await userRepository.deleteUserByName("AnyName");
 
-  const deleteTestUserTestSubject = await userRepository.deleteManyByName(
-    "testUser"
-  );
+  await userRepository.deleteManyByName("testUser");
 });
 
 describe("UserRepository - Create", () => {
