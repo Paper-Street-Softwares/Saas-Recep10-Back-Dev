@@ -117,6 +117,8 @@ class UserRepository {
         name,
       },
     });
+
+    return manyDeletedByName;
   };
 }
 
