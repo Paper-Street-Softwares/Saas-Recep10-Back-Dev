@@ -38,10 +38,10 @@ describe("UserRepository - Create", () => {
   test("Should return id, name and email, but not password of created User", () => {
     const testUserInstance = mainTestUser;
 
-    expect(mainTestUser.name).toBeDefined();
-    expect(mainTestUser.email).toBeDefined();
-    expect(mainTestUser.id).toBeDefined();
-    expect(mainTestUser.password).toBeUndefined();
+    expect(testUserInstance.name).toBeDefined();
+    expect(testUserInstance.email).toBeDefined();
+    expect(testUserInstance.id).toBeDefined();
+    expect(testUserInstance.password).toBeUndefined();
   });
 });
 
@@ -156,7 +156,7 @@ describe("UserRepository - Delete", () => {
       "anyPassword"
     );
 
-    const deleteAllByName = await userRepository.deleteManyByName("sameName");
+    await userRepository.deleteManyByName("sameName");
 
     const findUser1 = await userRepository.findUserById(user1.id);
     const findUser2 = await userRepository.findUserById(user2.id);
