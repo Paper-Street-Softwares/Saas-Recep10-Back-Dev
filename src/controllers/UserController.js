@@ -1,4 +1,3 @@
-const { request, response } = require("express");
 const UserUseCase = require("../useCases/UserUseCase.js");
 const UserRepository = require("../repositories/UserRepository.js");
 
