@@ -28,6 +28,12 @@ class UserUseCase {
     return createNewUser;
   };
 
+  executeFindUserById = async (id) => {
+    const findUserById = await this.userRepository.findUserById(id);
+
+    return findUserById;
+  };
+
   executeFindAllUser = async () => {
     const listOfAllUsers = await this.userRepository.findAllUser();
 

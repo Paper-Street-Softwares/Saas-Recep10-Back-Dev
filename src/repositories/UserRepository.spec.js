@@ -18,6 +18,8 @@ afterAll(async () => {
   await userRepository.deleteUserByName("AnyName");
 
   await userRepository.deleteManyByName("testUser");
+
+  await userRepository.deleteManyByName("nameAfterUpdate");
 });
 
 describe("UserRepository - Create", () => {

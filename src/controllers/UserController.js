@@ -25,13 +25,25 @@ class UserController {
     }
   };
 
+  handleFindUserById = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+      const findById = await this.userUseCase.executeFindUserById(id);
+      return res.status(200).json(findById);
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ error: error.message });
+    }
+  };
+
   handlefindAllUsers = async (req, res) => {
     try {
       const listAll = await this.userUseCase.executeFindAllUser();
       return res.status(200).json(listAll);
     } catch (error) {
       console.error(error);
-      return res.status(500).json({ message: "Erro interno do servidor" });
+      return res.status(500).json({ message: error.message });
     }
   };
 
