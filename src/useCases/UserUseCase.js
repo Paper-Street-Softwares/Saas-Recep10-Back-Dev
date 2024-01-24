@@ -55,6 +55,17 @@ class UserUseCase {
       return res.status(500).json({ error: "Internal server error." });
     }
   };
+
+  executeDeleteUserById = async (id, res) => {
+    try {
+      const deletedUserById = await this.userRepository.deleteUserById(id);
+
+      return deletedUserById;
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ error: error.message });
+    }
+  };
 }
 
 module.exports = UserUseCase;
