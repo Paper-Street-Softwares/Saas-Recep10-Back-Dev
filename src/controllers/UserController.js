@@ -65,6 +65,19 @@ class UserController {
       return res.status(500).json({ message: "Internal server error." });
     }
   };
+
+  handleDeleteUserById = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+      const deletedUserById = await this.userUseCase.executeDeleteUserById(id);
+
+      return res.status(200).json(deletedUserById);
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ error: error.message });
+    }
+  };
 }
 
 module.exports = UserController;
