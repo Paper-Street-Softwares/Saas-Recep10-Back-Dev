@@ -29,8 +29,11 @@ class UserController {
     const { id } = req.params;
 
     try {
-      const findById = await this.userUseCase.executeFindUserById(id);
-      return res.status(200).json(findById);
+      const findById = await this.userUseCase.executeFindUserById(id, res);
+
+      if (findById) {
+        return res.status(200).json(findById);
+      }
     } catch (error) {
       console.log(error);
       return res.status(500).json({ error: error.message });

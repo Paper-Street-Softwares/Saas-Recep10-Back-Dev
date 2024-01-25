@@ -28,8 +28,13 @@ class UserUseCase {
     return createNewUser;
   };
 
-  executeFindUserById = async (id) => {
+  executeFindUserById = async (id, res) => {
     const findUserById = await this.userRepository.findUserById(id);
+
+    if (!findUserById) {
+      res.status(400).json({ error: "User not found." });
+      return;
+    }
 
     return findUserById;
   };
